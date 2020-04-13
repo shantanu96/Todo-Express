@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>ToDo App</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Todo App</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="newGroup" id="newGroup" placeholder="Add Group" />
+                    </div>
+                </p>
+
+                <% for(var i=0;i<group.length;i++) {%>
+                <li>
+                    <a href="/?groupName=<%= group[i]['name'] %>"> <%= group[i]['name'] %> </a>
+                </li>
+                <% } %>
+
+                <!-- <li class=" active">
+                        <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li> -->
+            </ul>
+
+        </nav>
+
+
+        <!-- Main Content -->
+        <div id="content">
+            <div class="container-fluid">
+                <div id="list-title">
+                    <h2>
+                        My List
+                        <small class="text-muted">2/4 completed</small>
+                    </h2>
+                </div>
+
+                <div id="task-list">
+                    <%for(var i=0;i<tasks.length;i++){%>
+                    <% if(tasks[i]['status']==0){ %>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="far fa-circle btn btn-lg btn-primary taskDoneBtn"
+                                data-id="<%=tasks[i]['_id']%>"></button>
+                        </div>
+                        <input type="text" class="form-control unchecked-input" value="<%=tasks[i]['title']%>"
+                            readonly />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary removeTaskBtn"
+                                data-id="<%=tasks[i]['_id']%>">Remove</button>
+                        </div>
+                    </div>
+                    <% }else{ %>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="far fa-check-circle btn btn-lg btn-primary taskDoneBtn"
+                                data-id="<%=tasks[i]['_id']%>"></button>
+                        </div>
+                        <input type="text" class="form-control checked-input" value="<%=tasks[i]['title']%>" readonly />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary removeTaskBtn"
+                                data-id="<%=tasks[i]['_id']%>">Remove</button>
+                        </div>
+                    </div>
+                    <%}%>
+            <%}%>
+
+                </div>
+
+                <div id="task-input">
+                    <div class="input-group input-group-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-plus"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="newTask" id="newTask" placeholder="Add Task" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="groupName" id="groupName" value="<%= groupName %>" />
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>
