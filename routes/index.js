@@ -7,12 +7,10 @@ var Group = require('../models/group')
 router.get('/', function (req, res) {
     var groupName = req.query.groupName;
     var query = Group.find();
-    // var query = Task.find().sort({ status: 1 })
     query.exec(function (err, group) {
         tasks = []
         if (groupName != undefined) {
             if (group.length > 1) {
-                console.log(group)
                 tasks = group.find(g => g.name == groupName)['tasks']
             } else if (group.length == 1) {
                 tasks = group[0]['tasks']
@@ -49,10 +47,7 @@ router.get('/removetask/:groupName/:taskId', function (req, res) {
             res.redirect("/?groupName=" + groupName)
         }
     )
-    // Task.findByIdAndDelete(taskId, function (err, task) {
-    //     console.log("Task removed")
-    //     res.redirect("/")
-    // })
+
 })
 
 //mark task as done
